@@ -30,6 +30,7 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+       /*
         db = new DBHelper(getApplicationContext());
 
         // Create one testing new
@@ -43,7 +44,7 @@ public class SplashScreen extends Activity {
 
         db.closeDB();
 
-
+*/
 
         Intent i = new Intent(SplashScreen.this, MainActivity.class);
         startActivity(i);

@@ -40,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_NEWS = "CREATE TABLE "
             + TABLE_NEWS + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NEWS_IMG_URL
             + " TEXT," + COLUMN_NEWS_TITLE + " TEXT," + COLUMN_NEWS_HEADER + " TEXT, "
-            + COLUMN_NEWS_CONTENT + " TEXT, " + COLUMN_CREATED_DATE + " TEXT, "
+            + COLUMN_NEWS_CONTENT + " TEXT, " + COLUMN_CREATED_BY + " TEXT, "
             + COLUMN_CREATED_DATE + " DATETIME" + ")";
 
     public DBHelper(Context context) {
@@ -66,15 +66,14 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /**
-     *
-     * @param newObject
-     * @return
+     * Method that add a new New into the database
+     * @param newObject - News object containing all the data of the new to be added
+     * @return the id of the new added New
      */
     public long createNews(News newObject) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_ID, newObject.getId());
         values.put(COLUMN_NEWS_IMG_URL, newObject.getImageURL());
         values.put(COLUMN_NEWS_TITLE, newObject.getTitle());
         values.put(COLUMN_NEWS_HEADER, newObject.getHeader());
@@ -83,20 +82,16 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_CREATED_DATE, newObject.getCreatedDate());
 
         // insert row
-        long todo_id = db.insert(TABLE_NEWS, null, values);
-
-        return todo_id;
+        return db.insert(TABLE_NEWS, null, values);
     }
 
     /**
-     *
-     * @return
+     * Method that returns all the News of the database
+     * @return a List of News object containing all the News of the database
      */
     public List<News> getAllNews() {
         List<News> news = new ArrayList<News>();
         String selectQuery = "SELECT  * FROM " + TABLE_NEWS;
-
-        Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
@@ -105,13 +100,13 @@ public class DBHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 News newObject = new News();
-                newObject.setId(c.getInt((c.getColumnIndex(COLUMN_ID))));
-                newObject.setImageURL((c.getString(c.getColumnIndex(COLUMN_NEWS_IMG_URL))));
-                newObject.setTitle((c.getString(c.getColumnIndex(COLUMN_NEWS_TITLE))));
-                newObject.setHeader((c.getString(c.getColumnIndex(COLUMN_NEWS_HEADER))));
-                newObject.setContent((c.getString(c.getColumnIndex(COLUMN_NEWS_CONTENT))));
-                newObject.setCreatedBy((c.getString(c.getColumnIndex(COLUMN_CREATED_BY))));
-                newObject.setCreatedDate((c.getString(c.getColumnIndex(COLUMN_CREATED_DATE))));
+                newObject.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
+                newObject.setImageURL(c.getString(c.getColumnIndex(COLUMN_NEWS_IMG_URL)));
+                newObject.setTitle(c.getString(c.getColumnIndex(COLUMN_NEWS_TITLE)));
+                newObject.setHeader(c.getString(c.getColumnIndex(COLUMN_NEWS_HEADER)));
+                newObject.setContent(c.getString(c.getColumnIndex(COLUMN_NEWS_CONTENT)));
+                newObject.setCreatedBy(c.getString(c.getColumnIndex(COLUMN_CREATED_BY)));
+                newObject.setCreatedDate(c.getString(c.getColumnIndex(COLUMN_CREATED_DATE)));
 
                 // adding to news list
                 news.add(newObject);
@@ -121,7 +116,35 @@ public class DBHelper extends SQLiteOpenHelper {
         return news;
     }
 
+    /**
+     * Method that returns the News with the desired id
+     * @param new_id - the id of the News to be queried
+     * @return the News object containing all the News information or null if it doesn't exists
+     */
+    public News getNew(long new_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        News newObject = null;
 
+        String selectQuery = "SELECT  * FROM " + TABLE_NEWS + " WHERE "
+                + COLUMN_ID + " = " + new_id;
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null) {
+            c.moveToFirst();
+
+            newObject = new News();
+            newObject.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
+            newObject.setImageURL(c.getString(c.getColumnIndex(COLUMN_NEWS_IMG_URL)));
+            newObject.setTitle(c.getString(c.getColumnIndex(COLUMN_NEWS_TITLE)));
+            newObject.setHeader(c.getString(c.getColumnIndex(COLUMN_NEWS_HEADER)));
+            newObject.setContent(c.getString(c.getColumnIndex(COLUMN_NEWS_CONTENT)));
+            newObject.setCreatedBy(c.getString(c.getColumnIndex(COLUMN_CREATED_BY)));
+            newObject.setCreatedDate(c.getString(c.getColumnIndex(COLUMN_CREATED_DATE)));
+        }
+
+        return newObject;
+    }
 
     /**
      * Method that close the readable database
@@ -131,6 +154,5 @@ public class DBHelper extends SQLiteOpenHelper {
         if (db != null && db.isOpen())
             db.close();
     }
-
 }
 
