@@ -30,21 +30,15 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-       /*
+
         db = new DBHelper(getApplicationContext());
 
         // Create one testing new
         News newObject = new News(1,"url","title","header","created","2015-01-01","content");
         db.createNews(newObject);
-
-        // Get all the news and print them
-        for (News n : db.getAllNews())
-            Log.i("New", n.toString());
-
-
         db.closeDB();
 
-*/
+
 
         Intent i = new Intent(SplashScreen.this, MainActivity.class);
         startActivity(i);

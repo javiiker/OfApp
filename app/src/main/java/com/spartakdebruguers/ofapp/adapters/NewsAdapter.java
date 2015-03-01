@@ -13,6 +13,7 @@ import com.spartakdebruguers.ofapp.model.News;
 import java.util.List;
 
 /**
+ * Class representing the adapter of the News ListView
  * Created by javier_santiago on 28/02/2015.
  */
 public class NewsAdapter extends ArrayAdapter<News> {
