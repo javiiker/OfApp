@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="6dip"
     android:background="@drawable/news_rec_shape">
 
     <!-- Thumbnail image -->
-    <ImageView
+    <com.spartakdebruguers.ofapp.views.TopCropImage
         android:id="@+id/news_image"
-        android:layout_width="@dimen/news_width"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="@dimen/news_img_margin"
-        android:layout_marginEnd="@dimen/news_img_margin"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <!-- News title -->
     <TextView
         android:id="@+id/news_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/news_image"
-        android:layout_toEndOf="@+id/news_image"
+        android:layout_below="@id/news_image"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignWithParentIfMissing="true"
         android:singleLine="false"
         android:textStyle="bold"
@@ -36,9 +31,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/news_title"
-        android:layout_toRightOf="@+id/news_image"
-        android:layout_toEndOf="@+id/news_image"
-        android:layout_marginTop="1dip"
         android:singleLine="false"
         android:textColor="@color/subtitle"
         android:textSize="@dimen/subtitle"/>

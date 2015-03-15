@@ -4,11 +4,10 @@
     <item android:state_pressed="true">
         <layer-list>
             <!-- SHADOW LAYER -->
-            <item android:bottom="2dp" android:left="2dp">
+            <item android:left="3dp" android:top="2dp">
                 <shape>
-                    <gradient android:angle="270"
-                        android:endColor="#BABABA" android:startColor="#E2E2E2" />
                     <corners android:radius="2dp" />
+                    <solid android:color="#88BABABA" />
                 </shape>
             </item>
             <!-- CONTENT LAYER -->
@@ -25,9 +24,8 @@
             <!-- SHADOW LAYER -->
             <item android:left="3dp" android:top="2dp">
                 <shape>
-                    <gradient android:angle="270"
-                        android:endColor="#BABABA" android:startColor="#E2E2E2" />
                     <corners android:radius="2dp" />
+                    <solid android:color="#88BABABA" />
                 </shape>
             </item>
             <!-- CONTENT LAYER -->
