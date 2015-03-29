@@ -7,20 +7,23 @@ import android.widget.ImageView;
 
 /**
  * Created by javier_santiago on 15/03/2015.
+ *
+ * Class that represents a ImageView that crops the top of the image but making it to occupy the
+ * entire ImageView height
  */
 
-public class TopCropImage extends ImageView {
-    public TopCropImage(Context context) {
+public class TopCropImageView extends ImageView {
+    public TopCropImageView(Context context) {
         super(context);
         setScaleType(ScaleType.MATRIX);
     }
 
-    public TopCropImage(Context context, AttributeSet attrs) {
+    public TopCropImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setScaleType(ScaleType.MATRIX);
     }
 
-    public TopCropImage(Context context, AttributeSet attrs, int defStyle) {
+    public TopCropImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setScaleType(ScaleType.MATRIX);
     }

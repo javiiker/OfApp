@@ -6,10 +6,10 @@
     android:background="@drawable/news_rec_shape">
 
     <!-- Thumbnail image -->
-    <com.spartakdebruguers.ofapp.views.TopCropImage
+    <com.spartakdebruguers.ofapp.views.DynamicImageView
         android:id="@+id/news_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 
     <!-- News title -->
     <TextView

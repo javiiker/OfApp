@@ -2,4 +2,5 @@
 <resources>
     <color name="title">#000000</color>
     <color name="subtitle">#989898</color>
+    <color name="news_border">#565454</color>
 </resources>

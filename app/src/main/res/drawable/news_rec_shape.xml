@@ -14,6 +14,7 @@
             <item>
                 <shape>
                     <solid android:color="#F1CA30" />
+                    <stroke android:width="1px" android:color="@color/news_border" />
                     <corners android:radius="2dp" />
                 </shape>
             </item>
@@ -32,6 +33,7 @@
             <item android:bottom="3dp" android:right="2dp">
                 <shape>
                     <solid android:color="@android:color/white" />
+                    <stroke android:width="1px" android:color="@color/news_border" />
                     <corners android:radius="2dp" />
                 </shape>
             </item>

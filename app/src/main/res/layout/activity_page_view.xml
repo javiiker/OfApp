@@ -1,0 +1,58 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View android:id="@+id/separator"
+        android:background="#00ff00"
+        android:layout_width = "fill_parent"
+        android:layout_height="3dip"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#000000">
+
+        <TextView android:layout_height="wrap_content" android:id="@+id/testoAiuto"
+            android:layout_width="wrap_content"
+            android:text="@string/news_tag"
+            android:textSize="14sp"
+            android:paddingLeft="6dp"
+            android:background="#000000"
+            android:textColor="#FF0000"
+            android:textStyle="bold"
+             />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_gravity="end"
+            android:background="#000000">
+                <com.viewpagerindicator.CirclePageIndicator
+                    android:id="@+id/indicator"
+                    android:layout_gravity="end"
+                    android:padding="4dip"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:background="#000000"
+                    app:radius="5dp"
+                    app:strokeWidth="0dp"
+                    app:fillColor="#FF0000"
+                    app:pageColor="#88FF0000"
+                    />
+            </LinearLayout>
+
+    </LinearLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        />
+
+</LinearLayout >
