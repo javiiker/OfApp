@@ -18,6 +18,7 @@ public class News {
     private String createdBy;
     private String createdDate;
     private String content;
+    private String category;
 
     private static final String ITEM_SEP = System.getProperty("line.separator");
 
@@ -29,6 +30,7 @@ public class News {
     public final static String CREATED_BY = "created_by";
     public final static String CREATED_DATE = "created_date";
     public final static String CONTENT = "content";
+    public final static String CATEGORY = "category";
 
     /**
      * Default constructor
@@ -47,9 +49,10 @@ public class News {
      * @param createdBy - who created the news
      * @param createdDate - when the news was created
      * @param content - the content of the news
+     * @param category - the category of the news
      */
     public News(int id, String imageURL, String title, String header, String createdBy,
-                 String createdDate, String content)
+                 String createdDate, String content, String category)
     {
         this.id = id;
         this.imageURL = imageURL;
@@ -58,6 +61,7 @@ public class News {
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.content = content;
+        this.category = category;
     }
 
     /**
@@ -73,6 +77,7 @@ public class News {
         createdBy = intent.getStringExtra(News.CREATED_BY);
         createdDate = intent.getStringExtra(News.CREATED_DATE);
         content = intent.getStringExtra(News.CONTENT);
+        category = intent.getStringExtra(News.CATEGORY);
     }
 
     /**
@@ -199,6 +204,24 @@ public class News {
      */
     public void setContent(String content) {
         this.content = content;
+    }
+
+    /**
+     * Get the current value of the category property.
+     *
+     * @return returns current category
+     */
+    public String getCategory() {
+        return category;
+    }
+
+    /**
+     * Set the value of the category property.
+     *
+     * @param category - category to be added
+     */
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     /**

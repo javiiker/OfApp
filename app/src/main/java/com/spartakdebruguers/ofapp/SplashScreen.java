@@ -34,13 +34,15 @@ public class SplashScreen extends Activity {
         db = new DBHelper(getApplicationContext());
 
         // Create one testing new
-        News newObject = new News(1,"url","title","header","created","2015-01-01","content");
+        News newObject = new News(1,"url","title","header","created","2015-01-01","content","Crónicas");
+        db.createNews(newObject);
+        newObject = new News(1,"url","title","header","created","2015-01-01","content","Noticias");
         db.createNews(newObject);
         db.closeDB();
 
 
 
-        Intent i = new Intent(SplashScreen.this, MainActivity.class);
+        Intent i = new Intent(SplashScreen.this, NewsActivity.class);
         startActivity(i);
 
         // close this activity

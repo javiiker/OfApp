@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String LOG = DBHelper.class.getName();
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "spartak";
@@ -35,13 +35,14 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_NEWS_TITLE = "title";
     private static final String COLUMN_NEWS_HEADER = "header";
     private static final String COLUMN_NEWS_CONTENT = "content";
+    private static final String COLUMN_NEWS_CATEGORY = "category";
 
     // Table Create Statements
     private static final String CREATE_TABLE_NEWS = "CREATE TABLE "
             + TABLE_NEWS + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NEWS_IMG_URL
             + " TEXT," + COLUMN_NEWS_TITLE + " TEXT," + COLUMN_NEWS_HEADER + " TEXT, "
-            + COLUMN_NEWS_CONTENT + " TEXT, " + COLUMN_CREATED_BY + " TEXT, "
-            + COLUMN_CREATED_DATE + " DATETIME" + ")";
+            + COLUMN_NEWS_CONTENT + " TEXT, " + COLUMN_NEWS_CATEGORY + " TEXT, "
+            + COLUMN_CREATED_BY + " TEXT, " + COLUMN_CREATED_DATE + " DATETIME" + ")";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -80,6 +81,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NEWS_CONTENT, newObject.getContent());
         values.put(COLUMN_CREATED_BY, newObject.getCreatedBy());
         values.put(COLUMN_CREATED_DATE, newObject.getCreatedDate());
+        values.put(COLUMN_NEWS_CATEGORY, newObject.getCategory());
 
         // insert row
         return db.insert(TABLE_NEWS, null, values);
@@ -107,6 +109,40 @@ public class DBHelper extends SQLiteOpenHelper {
                 newObject.setContent(c.getString(c.getColumnIndex(COLUMN_NEWS_CONTENT)));
                 newObject.setCreatedBy(c.getString(c.getColumnIndex(COLUMN_CREATED_BY)));
                 newObject.setCreatedDate(c.getString(c.getColumnIndex(COLUMN_CREATED_DATE)));
+                newObject.setCategory(c.getString(c.getColumnIndex(COLUMN_NEWS_CATEGORY)));
+
+                // adding to news list
+                news.add(newObject);
+            } while (c.moveToNext());
+        }
+
+        return news;
+    }
+
+    /**
+     * Method that returns all the News belonging to the desired category
+     * @return a List of News object containing all the News of the database
+     */
+    public List<News> getNewsByCategory(String category) {
+        List<News> news = new ArrayList<News>();
+        String selectQuery = "SELECT  * FROM " + TABLE_NEWS + " WHERE " + COLUMN_NEWS_CATEGORY +
+                " = '" + category + "'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                News newObject = new News();
+                newObject.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
+                newObject.setImageURL(c.getString(c.getColumnIndex(COLUMN_NEWS_IMG_URL)));
+                newObject.setTitle(c.getString(c.getColumnIndex(COLUMN_NEWS_TITLE)));
+                newObject.setHeader(c.getString(c.getColumnIndex(COLUMN_NEWS_HEADER)));
+                newObject.setContent(c.getString(c.getColumnIndex(COLUMN_NEWS_CONTENT)));
+                newObject.setCreatedBy(c.getString(c.getColumnIndex(COLUMN_CREATED_BY)));
+                newObject.setCreatedDate(c.getString(c.getColumnIndex(COLUMN_CREATED_DATE)));
+                newObject.setCategory(c.getString(c.getColumnIndex(COLUMN_NEWS_CATEGORY)));
 
                 // adding to news list
                 news.add(newObject);
@@ -141,6 +177,7 @@ public class DBHelper extends SQLiteOpenHelper {
             newObject.setContent(c.getString(c.getColumnIndex(COLUMN_NEWS_CONTENT)));
             newObject.setCreatedBy(c.getString(c.getColumnIndex(COLUMN_CREATED_BY)));
             newObject.setCreatedDate(c.getString(c.getColumnIndex(COLUMN_CREATED_DATE)));
+            newObject.setCategory(c.getString(c.getColumnIndex(COLUMN_NEWS_CATEGORY)));
         }
 
         return newObject;

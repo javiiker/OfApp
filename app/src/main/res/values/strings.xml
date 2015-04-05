@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="news_tag">Noticias</string>
-
+    <string name="news_cronicas">Portada Crónicas</string>
+    <string name="news_noticias">Portada Noticias</string>
 </resources>

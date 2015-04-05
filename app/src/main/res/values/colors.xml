@@ -3,4 +3,7 @@
     <color name="title">#000000</color>
     <color name="subtitle">#989898</color>
     <color name="news_border">#565454</color>
+
+    <color name="news_category">#FFFFFF</color>
+    <color name="menu_news_separator">#FFFF00</color>
 </resources>
