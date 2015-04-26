@@ -1,6 +1,8 @@
 package com.spartakdebruguers.ofapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,8 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.spartakdebruguers.ofapp.R;
+import com.spartakdebruguers.ofapp.activity.NewsDetailsActivity;
+import com.spartakdebruguers.ofapp.database.DBHelper;
 import com.spartakdebruguers.ofapp.model.News;
 import java.util.List;
 
@@ -18,6 +22,7 @@ import java.util.List;
  * Created by javier_santiago on 28/02/2015.
  */
 public class NewsAdapter extends ArrayAdapter<News> {
+    private static final String LOG = NewsAdapter.class.getName(); // Logcat cat
     private final Context context;
     private final List<News> values;
 
@@ -64,10 +69,27 @@ public class NewsAdapter extends ArrayAdapter<News> {
         // if the list of values is not null
         if (values != null) {
             // object item based on the position
-            News newsObject = values.get(position);
+            final News newsObject = values.get(position);
 
             // assign the values if the object is not null
             if (newsObject != null) {
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // create an intent stating which Activity you would like to start
+                        Intent newsDetailIntent = new Intent(v.getContext(), NewsDetailsActivity.class);
+
+                        // add the activity data of the intent
+                        //newsDetailIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        newsDetailIntent.putExtra(DBHelper.COLUMN_NEWS_IMG_URL, "http://spartakdebruguers.com/images/stories/news/repartiendo_estopa.jpg");
+                        newsDetailIntent.putExtra(DBHelper.COLUMN_NEWS_TITLE, "Entre penalti y doble penaltis");
+                        newsDetailIntent.putExtra(DBHelper.COLUMN_NEWS_HEADER, "Gavasella 4 - Spartak 2");
+                        newsDetailIntent.putExtra(DBHelper.COLUMN_NEWS_CONTENT, "");
+
+                        v.getContext().startActivity(newsDetailIntent);
+                    }
+                });
+
                 String url = "http://spartakdebruguers.com/images/stories/news/repartiendo_estopa.jpg";
                 mViewHolder.imageLoader.displayImage(url,mViewHolder.thumb_image);
 

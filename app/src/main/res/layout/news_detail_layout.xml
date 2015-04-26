@@ -1,0 +1,94 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View android:id="@+id/separator"
+        android:background="@color/menu_news_separator"
+        android:layout_width="fill_parent"
+        android:layout_height="3dip"/>
+
+    <ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Thumbnail image -->
+            <com.spartakdebruguers.ofapp.views.DynamicImageView
+                android:id="@+id/news_detail_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <!-- News title -->
+            <TextView
+                android:id="@+id/news_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:textColor="@color/title"
+                android:textSize="@dimen/details_title" />
+
+            <!-- New subtitle -->
+            <TextView
+                android:id="@+id/news_detail_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:singleLine="false"
+                android:textColor="@color/title"
+                android:textSize="@dimen/details_subtitle"/>
+
+            <!-- Creation date separator-->
+            <View android:id="@+id/separator_bef_date"
+                android:background="@color/news_dates_separator"
+                android:layout_margin="7dp"
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"/>
+
+            <!-- Creation date -->
+            <TextView
+                android:id="@+id/news_detail_creation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:singleLine="false"
+                android:textColor="@color/news_date"
+                android:textSize="@dimen/details_date"/>
+
+            <!-- Creation date separator-->
+            <View android:id="@+id/separator_after_date"
+                android:background="@color/news_dates_separator"
+                android:layout_margin="7dp"
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"/>
+
+            <!-- Content -->
+            <TextView
+                android:id="@+id/news_detail_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:singleLine="false"
+                android:textColor="@color/news_content"
+                android:textSize="@dimen/details_content"
+                android:lineSpacingMultiplier="1.4"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

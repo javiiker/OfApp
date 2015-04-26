@@ -26,16 +26,16 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TABLE_NEWS = "news";
 
     // Common column names
-    private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_CREATED_BY = "created_by";
-    private static final String COLUMN_CREATED_DATE = "created_date";
+    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_CREATED_BY = "created_by";
+    public static final String COLUMN_CREATED_DATE = "created_date";
 
     // NEWS Table - column names
-    private static final String COLUMN_NEWS_IMG_URL = "img_url";
-    private static final String COLUMN_NEWS_TITLE = "title";
-    private static final String COLUMN_NEWS_HEADER = "header";
-    private static final String COLUMN_NEWS_CONTENT = "content";
-    private static final String COLUMN_NEWS_CATEGORY = "category";
+    public static final String COLUMN_NEWS_IMG_URL = "img_url";
+    public static final String COLUMN_NEWS_TITLE = "title";
+    public static final String COLUMN_NEWS_HEADER = "header";
+    public static final String COLUMN_NEWS_CONTENT = "content";
+    public static final String COLUMN_NEWS_CATEGORY = "category";
 
     // Table Create Statements
     private static final String CREATE_TABLE_NEWS = "CREATE TABLE "
