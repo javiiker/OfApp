@@ -10,6 +10,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.spartakdebruguers.ofapp.R;
 import com.spartakdebruguers.ofapp.database.DBHelper;
 import com.spartakdebruguers.ofapp.model.News;
+import com.spartakdebruguers.ofapp.utils.ConfigUtils;
 
 public class NewsDetailsActivity extends BaseActivity {
     @Override
@@ -31,8 +32,15 @@ public class NewsDetailsActivity extends BaseActivity {
                 "<p>Hasta aqu&iacute; la liga regular del <strong>Spartak</strong> que acaba en una meritoria cuarta plaza y siendo el tercer equipo menos goleado pese a las lesiones que hemos sufrido. Hemos demostrado que jugando bien podemos plantar cara a cualquiera. Ser&aacute; dif&iacute;cil ganar a <strong>Drink Team</strong>, pero con su juego noble y con una buena defensa podemos llegar a semifinales. Ahora a recuperarnos y a pensar en la <strong>Champions</strong>.<strong> &iexcl;FOR&Ccedil;A SPARTAK!</strong></p>";
 
         // show the image
-        ImageLoader.getInstance()
-                .displayImage(details.getImageURL(), ((ImageView) findViewById(R.id.news_detail_image)));
+        try {
+            ImageLoader.getInstance()
+                    .displayImage(details.getImageURL(), ((ImageView) findViewById(R.id.news_detail_image)));
+        } catch(Exception ex ){
+            ConfigUtils.configImageLoader(getApplicationContext());
+            ImageLoader.getInstance()
+                    .displayImage(details.getImageURL(), ((ImageView) findViewById(R.id.news_detail_image)));
+        }
+
         ((TextView) findViewById(R.id.news_detail_title)).setText(details.getTitle()); // set the title
         ((TextView) findViewById(R.id.news_detail_subtitle)).setText(details.getHeader()); // set the header
         ((TextView) findViewById(R.id.news_detail_creation)).setText("Javi, 10/10/2014"); // set the creation date

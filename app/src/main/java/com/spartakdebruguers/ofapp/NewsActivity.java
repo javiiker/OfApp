@@ -22,6 +22,7 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.spartakdebruguers.ofapp.activity.BaseActivity;
 import com.spartakdebruguers.ofapp.adapters.NewsPageAdapter;
 import com.spartakdebruguers.ofapp.fragments.NewsFragment;
+import com.spartakdebruguers.ofapp.utils.ConfigUtils;
 import com.viewpagerindicator.CirclePageIndicator;
 
 public class NewsActivity extends BaseActivity {
@@ -31,20 +32,7 @@ public class NewsActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_view);
-
-        // UNIVERSAL IMAGE LOADER SETUP
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                .cacheOnDisk(true)
-                .imageScaleType(ImageScaleType.EXACTLY)
-                .displayer(new FadeInBitmapDisplayer(300)).build();
-
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
-                getApplicationContext())
-                .defaultDisplayImageOptions(defaultOptions)
-                .memoryCache(new WeakMemoryCache()).build();
-
-        ImageLoader.getInstance().init(config);
-        // END - UNIVERSAL IMAGE LOADER SETUP
+        ConfigUtils.configImageLoader(getApplicationContext()); // UNIVERSAL IMAGE LOADER SETUP
 
         final List<Fragment> fragments = getFragments();
         pageAdapter = new NewsPageAdapter(getSupportFragmentManager(), fragments);
