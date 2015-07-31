@@ -6,7 +6,4 @@ android:paddingRight="5dp"
 android:paddingTop="5dp"
 android:paddingBottom="5dp" tools:context=".MainActivity">
 
-
-
-
 </RelativeLayout>

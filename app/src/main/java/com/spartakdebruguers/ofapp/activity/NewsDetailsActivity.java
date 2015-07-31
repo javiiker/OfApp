@@ -3,6 +3,7 @@ package com.spartakdebruguers.ofapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,14 +37,16 @@ public class NewsDetailsActivity extends BaseActivity {
             ImageLoader.getInstance()
                     .displayImage(details.getImageURL(), ((ImageView) findViewById(R.id.news_detail_image)));
         } catch(Exception ex ){
-            ConfigUtils.configImageLoader(getApplicationContext());
-            ImageLoader.getInstance()
-                    .displayImage(details.getImageURL(), ((ImageView) findViewById(R.id.news_detail_image)));
         }
 
         ((TextView) findViewById(R.id.news_detail_title)).setText(details.getTitle()); // set the title
         ((TextView) findViewById(R.id.news_detail_subtitle)).setText(details.getHeader()); // set the header
         ((TextView) findViewById(R.id.news_detail_creation)).setText("Javi, 10/10/2014"); // set the creation date
         ((TextView) findViewById(R.id.news_detail_content)).setText(Html.fromHtml(mierda)); // set the content
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 }

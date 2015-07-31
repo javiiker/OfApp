@@ -15,5 +15,6 @@
     <color name="circle_indicator_selected">#FFFF00</color>
     <color name="circle_indicator_unselected">#88FFFF00</color>
     <color name="home_arrow">#FFFF00</color>
+    <color name="translucent_black">#80000000</color>
 </resources>
 

@@ -1,4 +1,4 @@
-package com.spartakdebruguers.ofapp;
+package com.spartakdebruguers.ofapp.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,27 +24,29 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.spartakdebruguers.ofapp.R;
 import com.spartakdebruguers.ofapp.activity.BaseActivity;
 import com.spartakdebruguers.ofapp.adapters.NewsPageAdapter;
 import com.spartakdebruguers.ofapp.fragments.NewsFragment;
 import com.spartakdebruguers.ofapp.utils.ConfigUtils;
 import com.viewpagerindicator.CirclePageIndicator;
 
-public class NewsActivity extends Fragment {
+public class HomeNewsFragment extends Fragment {
     private FragmentActivity myContext;
-    private NewsPageAdapter pageAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home_news, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_home_news, container, false);
 
         final List<Fragment> fragments = getFragments();
-        pageAdapter = new NewsPageAdapter(myContext.getSupportFragmentManager(), fragments);
 
-        ViewPager pager = (ViewPager)myContext.findViewById(R.id.viewpager);
+        if(myContext==null) Log.i("asdasd", "onCreateView null");
+        NewsPageAdapter pageAdapter = new NewsPageAdapter(myContext.getSupportFragmentManager(), fragments);
+
+        ViewPager pager = (ViewPager)rootView.findViewById(R.id.viewpager);
         pager.setAdapter(pageAdapter);
 
-        CirclePageIndicator titleIndicator = (CirclePageIndicator)myContext.findViewById(R.id.indicator);
+        CirclePageIndicator titleIndicator = (CirclePageIndicator)rootView.findViewById(R.id.indicator);
         titleIndicator.setViewPager(pager);
 
         // Attach the page change listener inside the activity
@@ -59,7 +62,7 @@ public class NewsActivity extends Fragment {
                     default: categoryName = getResources().getString(R.string.news_cronicas); break;
                 }
 
-                ((TextView)myContext.findViewById(R.id.news_category_text)).setText(categoryName);
+                ((TextView)rootView.findViewById(R.id.news_category_text)).setText(categoryName);
             }
 
             // This method will be invoked when the current page is scrolled
@@ -78,7 +81,7 @@ public class NewsActivity extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
-        myContext=(FragmentActivity) activity;
+        myContext = (FragmentActivity) activity;
         super.onAttach(activity);
     }
 
